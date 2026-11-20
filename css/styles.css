@@ -1,0 +1,74 @@
+/* OmniConvert Custom Enhancements */
+
+:root {
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+}
+
+/* Glassmorphism effects */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(229, 231, 235, 0.8);
+}
+
+.dark .glass-panel {
+    background: rgba(17, 24, 39, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(55, 65, 81, 0.6);
+}
+
+/* Dropzone drag hover animation */
+.dropzone-active {
+    border-color: #6366f1 !important;
+    background-color: rgba(99, 102, 241, 0.08) !important;
+    transform: scale(1.008);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #475569;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+}
+
+/* Pulse badge animation */
+@keyframes pulse-subtle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.03); }
+}
+
+.animate-pulse-subtle {
+    animation: pulse-subtle 3s infinite ease-in-out;
+}
+
+/* Custom code view */
+.code-editor {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    tab-size: 2;
+}
+
+/* Transition smoothness */
+* {
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
