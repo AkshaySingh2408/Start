@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // State
     const state = {
-        theme: localStorage.getItem('omniconvert_theme') || 'light',
+        theme: localStorage.getItem('omniconvert_theme') || 'dark',
         history: JSON.parse(localStorage.getItem('omniconvert_history') || '[]'),
         universalFile: null,
         universalResult: null,
@@ -41,13 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById('toastContainer');
         const toast = document.createElement('div');
         const colors = {
-            success: 'bg-emerald-600 text-white',
-            error: 'bg-rose-600 text-white',
-            info: 'bg-slate-800 text-white dark:bg-slate-100 dark:text-slate-900',
-            warning: 'bg-amber-600 text-white'
+            success: 'bg-emerald-950/90 border border-emerald-500/40 text-emerald-300 shadow-[0_0_20px_rgba(16,185,129,0.2)]',
+            error: 'bg-rose-950/90 border border-rose-500/40 text-rose-300 shadow-[0_0_20px_rgba(244,63,94,0.2)]',
+            info: 'bg-slate-900/90 border border-violet-500/40 text-violet-200 shadow-[0_0_20px_rgba(139,92,246,0.2)]',
+            warning: 'bg-amber-950/90 border border-amber-500/40 text-amber-300 shadow-[0_0_20px_rgba(245,158,11,0.2)]'
         };
 
-        toast.className = `${colors[type] || colors.info} px-4 py-2.5 rounded-xl text-xs font-semibold shadow-xl flex items-center space-x-2 transform transition-all duration-300 translate-y-4 opacity-0 pointer-events-auto`;
+        toast.className = `${colors[type] || colors.info} backdrop-blur-md px-4 py-2.5 rounded-2xl text-xs font-mono font-medium shadow-2xl flex items-center space-x-2 transform transition-all duration-300 translate-y-4 opacity-0 pointer-events-auto`;
         toast.innerHTML = `<span>${message}</span>`;
         container.appendChild(toast);
 
@@ -118,14 +118,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const panes = document.querySelectorAll('.tab-pane');
 
     const switchTab = (targetId) => {
+        const activeClasses = ['active', 'bg-gradient-to-r', 'from-violet-600', 'via-indigo-600', 'to-cyan-500', 'text-white', 'shadow-[0_0_20px_rgba(139,92,246,0.35)]'];
+        const inactiveClasses = ['text-slate-400', 'hover:text-white', 'hover:bg-white/5'];
+
         tabs.forEach(tab => {
             const isMatch = tab.dataset.target === targetId;
             if (isMatch) {
-                tab.classList.add('active', 'bg-brand-600', 'text-white', 'shadow-md', 'shadow-brand-500/20');
-                tab.classList.remove('text-slate-600', 'dark:text-slate-300', 'hover:bg-slate-100', 'dark:hover:bg-slate-800');
+                tab.classList.add(...activeClasses);
+                tab.classList.remove(...inactiveClasses);
             } else {
-                tab.classList.remove('active', 'bg-brand-600', 'text-white', 'shadow-md', 'shadow-brand-500/20');
-                tab.classList.add('text-slate-600', 'dark:text-slate-300', 'hover:bg-slate-100', 'dark:hover:bg-slate-800');
+                tab.classList.remove(...activeClasses);
+                tab.classList.add(...inactiveClasses);
             }
         });
 

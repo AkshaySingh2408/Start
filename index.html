@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniConvert - Universal All-in-One File Converter</title>
+    <title>OmniConvert - Next-Gen Universal File Studio</title>
+    <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -12,17 +16,19 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            50: '#eef2ff',
-                            100: '#e0e7ff',
-                            200: '#c7d2fe',
-                            300: '#a5b4fc',
-                            400: '#818cf8',
-                            500: '#6366f1',
-                            600: '#4f46e5',
-                            700: '#4338ca',
-                            800: '#3730a3',
-                            900: '#312e81',
+                        dark: {
+                            950: '#07090e',
+                            900: '#0d111c',
+                            850: '#111726',
+                            800: '#161d30',
+                            700: '#1e293b'
+                        },
+                        cyber: {
+                            violet: '#8b5cf6',
+                            indigo: '#6366f1',
+                            cyan: '#06b6d4',
+                            emerald: '#10b981',
+                            pink: '#ec4899'
                         }
                     }
                 }
@@ -39,255 +45,271 @@
     <script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js"></script>
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-200">
+<body class="cosmic-bg text-slate-100 min-h-screen flex flex-col font-sans selection:bg-violet-500 selection:text-white antialiased">
 
     <!-- Top Navigation Bar -->
-    <header class="sticky top-0 z-50 glass-panel border-b border-slate-200 dark:border-slate-800 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <!-- Brand -->
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-indigo-400 flex items-center justify-center text-white shadow-md shadow-brand-500/20">
-                    <i data-lucide="refresh-cw" class="w-5 h-5"></i>
+    <header class="sticky top-0 z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand & Identity -->
+            <div class="flex items-center space-x-3.5 group cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="relative">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-violet-600 via-indigo-600 to-cyan-500 rounded-2xl blur-sm opacity-70 group-hover:opacity-100 transition duration-300"></div>
+                    <div class="relative w-11 h-11 rounded-xl bg-dark-900 border border-white/10 flex items-center justify-center text-cyan-400 shadow-inner">
+                        <i data-lucide="refresh-cw" class="w-5 h-5 group-hover:rotate-180 transition-transform duration-500"></i>
+                    </div>
                 </div>
                 <div>
                     <div class="flex items-center space-x-2">
-                        <span class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-brand-600 via-indigo-500 to-purple-600 bg-clip-text text-transparent">
+                        <span class="text-xl font-extrabold tracking-tight gradient-shimmer">
                             OmniConvert
                         </span>
-                        <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800">
-                            100% Client-Side
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
                         </span>
                     </div>
-                    <p class="text-xs text-slate-500 dark:text-slate-400">Universal File Conversion Studio</p>
+                    <p class="text-[11px] font-mono uppercase tracking-wider text-slate-400 dark:text-slate-500">Next-Gen Universal File Studio</p>
                 </div>
             </div>
 
-            <!-- Privacy Shield & Quick Stats -->
-            <div class="hidden md:flex items-center space-x-6 text-xs text-slate-500 dark:text-slate-400">
-                <div class="flex items-center space-x-1.5 text-emerald-600 dark:text-emerald-400">
-                    <i data-lucide="shield-check" class="w-4 h-4"></i>
-                    <span class="font-medium">Files never leave your device</span>
+            <!-- Privacy Shield Status Tag -->
+            <div class="hidden md:flex items-center space-x-4">
+                <div class="flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 text-xs font-semibold shadow-[0_0_15px_rgba(16,185,129,0.15)]">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+                    <span>100% Client-Side • Zero Server Uploads</span>
                 </div>
-                <div class="flex items-center space-x-1">
-                    <i data-lucide="zap" class="w-4 h-4 text-amber-500"></i>
-                    <span>Offline Capable</span>
+                <div class="flex items-center space-x-1.5 text-xs text-slate-400 font-mono">
+                    <i data-lucide="cpu" class="w-3.5 h-3.5 text-cyan-400"></i>
+                    <span>Wasm Accelerated</span>
                 </div>
             </div>
 
-            <!-- Header Controls -->
+            <!-- Controls (Theme Toggle & History Drawer) -->
             <div class="flex items-center space-x-3">
-                <button id="themeToggleBtn" title="Toggle Dark/Light Mode" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition">
-                    <i id="themeIcon" data-lucide="moon" class="w-5 h-5"></i>
+                <button id="themeToggleBtn" title="Toggle Theme" class="p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition shadow-sm">
+                    <i id="themeIcon" data-lucide="sun" class="w-4 h-4"></i>
                 </button>
-                <button id="historyModalBtn" class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-semibold text-slate-700 dark:text-slate-200 transition">
-                    <i data-lucide="clock" class="w-4 h-4"></i>
-                    <span>History (<span id="historyCountBadge">0</span>)</span>
+                <button id="historyModalBtn" class="flex items-center space-x-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-semibold text-slate-200 transition shadow-sm">
+                    <i data-lucide="history" class="w-4 h-4 text-violet-400"></i>
+                    <span>History</span>
+                    <span id="historyCountBadge" class="px-2 py-0.5 rounded-full bg-violet-600/50 text-[10px] font-mono text-violet-200">0</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Main Container -->
+    <!-- Main Content Container -->
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
-        <!-- Category Tabs -->
-        <div class="flex items-center space-x-2 overflow-x-auto pb-2 scrollbar-none border-b border-slate-200 dark:border-slate-800">
-            <button class="nav-tab active flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition whitespace-nowrap bg-brand-600 text-white shadow-md shadow-brand-500/20" data-target="tab-universal">
+        <!-- Modern Floating Segmented Tabs Bar -->
+        <div class="glass-card p-1.5 rounded-2xl flex items-center space-x-1.5 overflow-x-auto scrollbar-none shadow-xl border border-white/10">
+            <button class="nav-tab active flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-bold transition whitespace-nowrap bg-gradient-to-r from-violet-600 via-indigo-600 to-cyan-500 text-white shadow-[0_0_20px_rgba(139,92,246,0.35)]" data-target="tab-universal">
                 <i data-lucide="sparkles" class="w-4 h-4"></i>
-                <span>Universal Auto-Detect</span>
+                <span>Auto-Detect</span>
             </button>
-            <button class="nav-tab flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium transition whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-target="tab-image">
+            <button class="nav-tab flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition whitespace-nowrap text-slate-400 hover:text-white hover:bg-white/5" data-target="tab-image">
                 <i data-lucide="image" class="w-4 h-4"></i>
                 <span>Image Studio</span>
             </button>
-            <button class="nav-tab flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium transition whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-target="tab-docs">
-                <i data-lucide="file-code" class="w-4 h-4"></i>
-                <span>Documents & Data</span>
+            <button class="nav-tab flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition whitespace-nowrap text-slate-400 hover:text-white hover:bg-white/5" data-target="tab-docs">
+                <i data-lucide="file-code-2" class="w-4 h-4"></i>
+                <span>Data & Docs</span>
             </button>
-            <button class="nav-tab flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium transition whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-target="tab-pdf">
+            <button class="nav-tab flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition whitespace-nowrap text-slate-400 hover:text-white hover:bg-white/5" data-target="tab-pdf">
                 <i data-lucide="file-text" class="w-4 h-4"></i>
                 <span>PDF Studio</span>
             </button>
-            <button class="nav-tab flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium transition whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-target="tab-audio">
-                <i data-lucide="music" class="w-4 h-4"></i>
+            <button class="nav-tab flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition whitespace-nowrap text-slate-400 hover:text-white hover:bg-white/5" data-target="tab-audio">
+                <i data-lucide="music-2" class="w-4 h-4"></i>
                 <span>Audio & Video</span>
             </button>
-            <button class="nav-tab flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium transition whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-target="tab-tools">
-                <i data-lucide="hash" class="w-4 h-4"></i>
+            <button class="nav-tab flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition whitespace-nowrap text-slate-400 hover:text-white hover:bg-white/5" data-target="tab-tools">
+                <i data-lucide="binary" class="w-4 h-4"></i>
                 <span>Base64 & Hash</span>
             </button>
-            <button class="nav-tab flex items-center space-x-2 px-4 py-2.5 rounded-xl text-sm font-medium transition whitespace-nowrap text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800" data-target="tab-batch">
+            <button class="nav-tab flex items-center space-x-2 px-4 py-2.5 rounded-xl text-xs font-semibold transition whitespace-nowrap text-slate-400 hover:text-white hover:bg-white/5" data-target="tab-batch">
                 <i data-lucide="layers" class="w-4 h-4"></i>
                 <span>Batch & ZIP</span>
             </button>
         </div>
 
         <!-- TAB 1: Universal Auto-Detect Dropzone -->
-        <section id="tab-universal" class="tab-pane block space-y-6">
-            <!-- Hero banner -->
-            <div class="text-center max-w-2xl mx-auto space-y-3 pt-2">
-                <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                    Convert Any File to Any Format
+        <section id="tab-universal" class="tab-pane block space-y-8">
+            <!-- Hero Title & Subtext -->
+            <div class="text-center max-w-3xl mx-auto space-y-4 pt-4">
+                <div class="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-violet-500/10 border border-violet-500/30 text-violet-300 text-xs font-mono font-medium shadow-[0_0_15px_rgba(139,92,246,0.15)]">
+                    <span class="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse"></span>
+                    <span>Universal High-Speed Conversion Engine</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight gradient-shimmer">
+                    Transform Any File.<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-300 to-pink-400">Zero Limits.</span>
                 </h1>
-                <p class="text-base text-slate-600 dark:text-slate-400">
-                    High-speed client-side conversion. Images, Documents, Data tables, PDFs, Audio and Hashes with zero file size limits and 100% local privacy.
+                <p class="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
+                    Convert images, tabular datasets, code syntax, PDFs, and video sound tracks instantly in your browser with mathematical precision and uncompromising privacy.
                 </p>
             </div>
 
-            <!-- Master Universal Dropzone -->
-            <div id="universalDropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-brand-500 dark:hover:border-brand-400 bg-white/70 dark:bg-slate-900/70 rounded-3xl p-10 text-center cursor-pointer transition-all duration-200 shadow-sm relative group overflow-hidden">
+            <!-- Master Interactive Dropzone -->
+            <div id="universalDropzone" class="dropzone-cyber rounded-3xl p-10 sm:p-14 text-center cursor-pointer relative overflow-hidden group shadow-2xl">
                 <input type="file" id="universalFileInput" class="hidden" multiple />
-                <div class="max-w-md mx-auto space-y-4">
-                    <div class="w-20 h-20 mx-auto rounded-2xl bg-brand-50 dark:bg-brand-950/60 text-brand-600 dark:text-brand-400 flex items-center justify-center group-hover:scale-110 transition-transform duration-200 shadow-inner">
-                        <i data-lucide="upload-cloud" class="w-10 h-10"></i>
+                
+                <!-- Ambient Glow Core -->
+                <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-violet-600/15 rounded-full blur-3xl pointer-events-none group-hover:bg-violet-600/25 transition duration-500"></div>
+
+                <div class="max-w-md mx-auto space-y-5 relative z-10">
+                    <div class="relative w-24 h-24 mx-auto">
+                        <div class="absolute inset-0 rounded-3xl bg-gradient-to-tr from-violet-600 to-cyan-500 blur-lg opacity-40 group-hover:opacity-80 transition duration-300 animate-pulse-ring"></div>
+                        <div class="relative w-full h-full rounded-3xl bg-dark-900/90 border border-white/15 flex items-center justify-center text-cyan-400 group-hover:scale-105 transition-transform duration-300 shadow-2xl">
+                            <i data-lucide="cloud-lightning" class="w-11 h-11"></i>
+                        </div>
                     </div>
                     <div>
-                        <h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">
-                            Drop your file here or <span class="text-brand-600 dark:text-brand-400 underline underline-offset-2">browse files</span>
+                        <h3 class="text-xl font-bold text-white tracking-tight">
+                            Drop your file here, or <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-400 underline underline-offset-4 decoration-violet-500">browse disk</span>
                         </h3>
-                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">
-                            PNG, JPG, WEBP, SVG, GIF, BMP, ICO, PDF, CSV, JSON, XML, YAML, TXT, MD, MP3, WAV, MP4, WebM
+                        <p class="text-xs text-slate-400 mt-1.5 font-mono">
+                            PNG • JPG • WEBP • SVG • GIF • BMP • ICO • PDF • JSON • CSV • XML • YAML • MP3 • WAV • MP4
                         </p>
                     </div>
-                    <div class="flex items-center justify-center space-x-2 text-xs text-slate-400 pt-2">
-                        <i data-lucide="clipboard" class="w-3.5 h-3.5"></i>
-                        <span>Or press <kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded text-slate-600 dark:text-slate-300 font-mono text-[10px]">Ctrl+V</kbd> anywhere to paste from clipboard</span>
+                    <div class="inline-flex items-center space-x-2 text-xs text-slate-400 bg-white/5 border border-white/5 px-3 py-1.5 rounded-full font-mono">
+                        <i data-lucide="command" class="w-3.5 h-3.5 text-violet-400"></i>
+                        <span>Paste from clipboard anytime with <kbd class="px-1.5 py-0.5 rounded bg-black/40 border border-white/10 text-cyan-300">Ctrl+V</kbd></span>
                     </div>
                 </div>
 
-                <!-- Sample Presets for Quick Testing -->
-                <div class="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800/80 flex flex-wrap items-center justify-center gap-2 text-xs">
-                    <span class="text-slate-400 font-medium">Quick Demo Files:</span>
-                    <button type="button" id="demoSampleImage" class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-brand-50 hover:text-brand-600 dark:hover:bg-brand-950 text-slate-600 dark:text-slate-300 transition">
-                        🖼️ Sample Image
+                <!-- Quick Interactive Demo Presets -->
+                <div class="mt-10 pt-6 border-t border-white/10 flex flex-wrap items-center justify-center gap-2.5 text-xs relative z-10">
+                    <span class="text-slate-400 font-mono text-[11px] uppercase tracking-wider">Quick Demos:</span>
+                    <button type="button" id="demoSampleImage" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-violet-600/30 hover:border-violet-500/50 border border-white/10 text-slate-200 transition font-medium flex items-center space-x-1.5 shadow-sm">
+                        <span>🖼️ Demo Image</span>
                     </button>
-                    <button type="button" id="demoSampleJson" class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-brand-50 hover:text-brand-600 dark:hover:bg-brand-950 text-slate-600 dark:text-slate-300 transition">
-                        📊 Sample JSON Data
+                    <button type="button" id="demoSampleJson" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-cyan-600/30 hover:border-cyan-500/50 border border-white/10 text-slate-200 transition font-medium flex items-center space-x-1.5 shadow-sm">
+                        <span>📊 Demo JSON</span>
                     </button>
-                    <button type="button" id="demoSampleCsv" class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-brand-50 hover:text-brand-600 dark:hover:bg-brand-950 text-slate-600 dark:text-slate-300 transition">
-                        📑 Sample CSV Table
+                    <button type="button" id="demoSampleCsv" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-emerald-600/30 hover:border-emerald-500/50 border border-white/10 text-slate-200 transition font-medium flex items-center space-x-1.5 shadow-sm">
+                        <span>📑 Demo CSV</span>
                     </button>
-                    <button type="button" id="demoSampleMarkdown" class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-brand-50 hover:text-brand-600 dark:hover:bg-brand-950 text-slate-600 dark:text-slate-300 transition">
-                        📝 Sample Markdown
+                    <button type="button" id="demoSampleMarkdown" class="px-3.5 py-1.5 rounded-full bg-white/5 hover:bg-pink-600/30 hover:border-pink-500/50 border border-white/10 text-slate-200 transition font-medium flex items-center space-x-1.5 shadow-sm">
+                        <span>📝 Demo Markdown</span>
                     </button>
                 </div>
             </div>
 
-            <!-- Universal Active Conversion Card (Populated when file is loaded) -->
-            <div id="universalResultCard" class="hidden glass-panel rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl border border-slate-200 dark:border-slate-800 animate-fadeIn">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
+            <!-- Universal Active Conversion Card -->
+            <div id="universalResultCard" class="hidden glass-card rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl border border-white/10">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-white/10">
                     <div class="flex items-center space-x-4">
-                        <div id="uFileIconBadge" class="w-12 h-12 rounded-2xl bg-brand-100 dark:bg-brand-950/80 text-brand-600 dark:text-brand-400 flex items-center justify-center font-bold">
-                            <i data-lucide="file" class="w-6 h-6"></i>
+                        <div id="uFileIconBadge" class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-violet-600/30 to-cyan-500/30 border border-white/15 text-cyan-300 flex items-center justify-center font-bold shadow-lg">
+                            <i data-lucide="file" class="w-7 h-7"></i>
                         </div>
                         <div>
-                            <h4 id="uFileName" class="text-lg font-bold text-slate-900 dark:text-white truncate max-w-sm sm:max-w-md">file.png</h4>
-                            <div class="flex items-center space-x-2 text-xs text-slate-500 dark:text-slate-400">
+                            <h4 id="uFileName" class="text-lg font-bold text-white truncate max-w-sm sm:max-w-md">file.png</h4>
+                            <div class="flex items-center space-x-2 text-xs font-mono text-slate-400 mt-0.5">
                                 <span id="uFileSize">1.2 MB</span>
                                 <span>•</span>
-                                <span id="uFileType" class="uppercase font-semibold text-brand-600 dark:text-brand-400">PNG Image</span>
+                                <span id="uFileType" class="uppercase font-bold text-cyan-400">PNG Image</span>
                             </div>
                         </div>
                     </div>
-                    <div class="flex items-center space-x-2">
-                        <button id="uClearBtn" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/50 transition">
-                            Clear File
-                        </button>
-                    </div>
+                    <button id="uClearBtn" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold text-rose-400 hover:bg-rose-500/20 border border-rose-500/30 transition">
+                        Clear File
+                    </button>
                 </div>
 
                 <!-- Format Selection Grid & Controls -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="space-y-3">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                    <div class="space-y-2">
+                        <label class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
                             1. Select Target Format
                         </label>
-                        <select id="uTargetFormat" class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-3.5 py-2.5 text-sm font-semibold focus:ring-2 focus:ring-brand-500 outline-none">
-                            <!-- Populated dynamically based on detected mime -->
+                        <select id="uTargetFormat" class="w-full bg-dark-900 border border-white/15 rounded-xl px-4 py-3 text-sm font-semibold text-white focus:ring-2 focus:ring-violet-500 outline-none">
+                            <!-- Populated dynamically -->
                         </select>
-                        <div id="uFormatHint" class="text-xs text-slate-400"></div>
+                        <div id="uFormatHint" class="text-xs text-slate-400 font-mono"></div>
                     </div>
 
-                    <div class="space-y-3">
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-                            2. Output Options
+                    <div class="space-y-2">
+                        <label class="block text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
+                            2. Output Tuning
                         </label>
-                        <div id="uOptionsContainer" class="space-y-2 text-sm">
-                            <!-- Dynamic controls (e.g. quality, delimiter, formatting) -->
+                        <div id="uOptionsContainer" class="space-y-2 text-sm bg-white/5 p-3 rounded-xl border border-white/5">
                             <div class="flex items-center justify-between">
-                                <span class="text-xs text-slate-600 dark:text-slate-400">Quality</span>
-                                <span id="uQualityLabel" class="text-xs font-bold text-brand-600 dark:text-brand-400">92%</span>
+                                <span class="text-xs text-slate-300">Quality Compression</span>
+                                <span id="uQualityLabel" class="text-xs font-mono font-bold text-cyan-400">92%</span>
                             </div>
-                            <input type="range" id="uQualitySlider" min="10" max="100" value="92" class="w-full accent-brand-600" />
+                            <input type="range" id="uQualitySlider" min="10" max="100" value="92" class="w-full accent-cyan-400 cursor-pointer" />
                         </div>
                     </div>
 
-                    <div class="flex flex-col justify-end space-y-3">
-                        <button id="uConvertBtn" class="w-full py-3 px-4 rounded-xl font-bold text-white bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 shadow-lg shadow-brand-500/25 flex items-center justify-center space-x-2 transition transform active:scale-95">
-                            <i data-lucide="sparkles" class="w-5 h-5"></i>
-                            <span>Convert Now</span>
+                    <div class="flex flex-col justify-end space-y-2">
+                        <button id="uConvertBtn" class="btn-cyber w-full py-3.5 px-4 rounded-xl font-bold text-sm text-white flex items-center justify-center space-x-2 shadow-lg">
+                            <i data-lucide="sparkles" class="w-4 h-4"></i>
+                            <span>Execute Conversion</span>
                         </button>
                     </div>
                 </div>
 
                 <!-- Conversion Output & Preview -->
-                <div id="uOutputSection" class="hidden pt-6 border-t border-slate-200 dark:border-slate-800 space-y-4">
-                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                        <div class="flex items-center space-x-2">
-                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
-                            <span class="text-sm font-bold text-emerald-600 dark:text-emerald-400">Conversion Successful!</span>
-                            <span id="uSavingsBadge" class="hidden text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300">
+                <div id="uOutputSection" class="hidden pt-6 border-t border-white/10 space-y-5">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div class="flex items-center space-x-2.5">
+                            <span class="relative flex h-3 w-3">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+                            </span>
+                            <span class="text-sm font-bold text-emerald-400">Conversion Finished</span>
+                            <span id="uSavingsBadge" class="hidden text-xs font-mono font-bold px-2.5 py-0.5 rounded-full bg-emerald-950 border border-emerald-500/40 text-emerald-300 shadow-sm">
                                 -35% smaller
                             </span>
                         </div>
-                        <div class="flex items-center space-x-2">
-                            <button id="uCopyBtn" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition flex items-center space-x-1.5">
+                        <div class="flex items-center space-x-2.5">
+                            <button id="uCopyBtn" class="px-3.5 py-2 rounded-xl text-xs font-semibold bg-white/10 hover:bg-white/15 border border-white/10 text-slate-200 transition flex items-center space-x-1.5">
                                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-                                <span>Copy Result</span>
+                                <span>Copy</span>
                             </button>
-                            <a id="uDownloadBtn" download="converted-file" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-brand-600 hover:bg-brand-500 text-white shadow-md shadow-brand-500/20 transition flex items-center space-x-1.5">
-                                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                            <a id="uDownloadBtn" download="converted-file" class="btn-cyber px-5 py-2 rounded-xl text-xs font-bold text-white flex items-center space-x-2 shadow-lg">
+                                <i data-lucide="download" class="w-4 h-4"></i>
                                 <span>Download File</span>
                             </a>
                         </div>
                     </div>
 
                     <!-- Visual Preview Container -->
-                    <div id="uPreviewBox" class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900/60 p-4 min-h-[160px] flex items-center justify-center overflow-auto max-h-[400px]">
-                        <!-- Dynamic Preview -->
+                    <div id="uPreviewBox" class="rounded-2xl border border-white/10 bg-black/40 p-5 min-h-[160px] flex items-center justify-center overflow-auto max-h-[420px] shadow-inner">
+                        <!-- Dynamic Content -->
                     </div>
                 </div>
             </div>
 
             <!-- Features Highlights Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
-                <div class="glass-panel p-5 rounded-2xl space-y-2 border border-slate-200 dark:border-slate-800">
-                    <div class="w-9 h-9 rounded-xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+                <div class="glass-card p-5 rounded-2xl space-y-2 border border-white/10 group hover:border-violet-500/40 transition">
+                    <div class="w-10 h-10 rounded-xl bg-violet-600/20 text-violet-400 flex items-center justify-center border border-violet-500/30">
                         <i data-lucide="image" class="w-5 h-5"></i>
                     </div>
-                    <h4 class="font-bold text-slate-800 dark:text-slate-200">Images & Vectors</h4>
-                    <p class="text-xs text-slate-500 dark:text-slate-400">PNG, JPG, WEBP, GIF, SVG, BMP, ICO with scaling & filters.</p>
+                    <h4 class="font-bold text-white text-sm">Visual & Raster</h4>
+                    <p class="text-xs text-slate-400 font-light">Convert PNG, JPG, WEBP, GIF, SVG, BMP, ICO with scaling & filters.</p>
                 </div>
-                <div class="glass-panel p-5 rounded-2xl space-y-2 border border-slate-200 dark:border-slate-800">
-                    <div class="w-9 h-9 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center">
+                <div class="glass-card p-5 rounded-2xl space-y-2 border border-white/10 group hover:border-cyan-500/40 transition">
+                    <div class="w-10 h-10 rounded-xl bg-cyan-600/20 text-cyan-400 flex items-center justify-center border border-cyan-500/30">
                         <i data-lucide="file-spreadsheet" class="w-5 h-5"></i>
                     </div>
-                    <h4 class="font-bold text-slate-800 dark:text-slate-200">Data & Code</h4>
-                    <p class="text-xs text-slate-500 dark:text-slate-400">JSON, CSV, XML, YAML, Markdown, HTML tables & syntax.</p>
+                    <h4 class="font-bold text-white text-sm">Tabular & Code</h4>
+                    <p class="text-xs text-slate-400 font-light">JSON, CSV, XML, YAML, Markdown, HTML tables & minification.</p>
                 </div>
-                <div class="glass-panel p-5 rounded-2xl space-y-2 border border-slate-200 dark:border-slate-800">
-                    <div class="w-9 h-9 rounded-xl bg-rose-100 dark:bg-rose-950/60 text-rose-600 dark:text-rose-400 flex items-center justify-center">
+                <div class="glass-card p-5 rounded-2xl space-y-2 border border-white/10 group hover:border-pink-500/40 transition">
+                    <div class="w-10 h-10 rounded-xl bg-pink-600/20 text-pink-400 flex items-center justify-center border border-pink-500/30">
                         <i data-lucide="file-text" class="w-5 h-5"></i>
                     </div>
-                    <h4 class="font-bold text-slate-800 dark:text-slate-200">PDF Suite</h4>
-                    <p class="text-xs text-slate-500 dark:text-slate-400">Images to PDF, Text to PDF, multi-page layout customizer.</p>
+                    <h4 class="font-bold text-white text-sm">PDF Studio</h4>
+                    <p class="text-xs text-slate-400 font-light">Images to PDF, Text to PDF, multi-page layout customizer.</p>
                 </div>
-                <div class="glass-panel p-5 rounded-2xl space-y-2 border border-slate-200 dark:border-slate-800">
-                    <div class="w-9 h-9 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center">
-                        <i data-lucide="music" class="w-5 h-5"></i>
+                <div class="glass-card p-5 rounded-2xl space-y-2 border border-white/10 group hover:border-emerald-500/40 transition">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+                        <i data-lucide="music-2" class="w-5 h-5"></i>
                     </div>
-                    <h4 class="font-bold text-slate-800 dark:text-slate-200">Audio & Media</h4>
-                    <p class="text-xs text-slate-500 dark:text-slate-400">Extract audio from videos, convert to MP3 & WAV lossless.</p>
+                    <h4 class="font-bold text-white text-sm">Sound & Media</h4>
+                    <p class="text-xs text-slate-400 font-light">Extract audio from videos, convert to MP3 & WAV lossless.</p>
                 </div>
             </div>
         </section>
@@ -296,39 +318,39 @@
         <section id="tab-image" class="tab-pane hidden space-y-6">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">Image Studio & Optimizer</h2>
-                    <p class="text-sm text-slate-500 dark:text-slate-400">Resize, re-encode, apply filters, rotate, and compress images with live preview</p>
+                    <h2 class="text-2xl font-extrabold text-white">Image Studio & Optimizer</h2>
+                    <p class="text-xs text-slate-400">Scale, compress, filter, transform, and transcode images client-side</p>
                 </div>
             </div>
 
             <!-- Image Dropzone -->
-            <div id="imageDropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-brand-500 bg-white/70 dark:bg-slate-900/70 rounded-3xl p-8 text-center cursor-pointer transition">
+            <div id="imageDropzone" class="dropzone-cyber rounded-3xl p-8 text-center cursor-pointer">
                 <input type="file" id="imageFileInput" accept="image/*" class="hidden" />
                 <div class="max-w-sm mx-auto space-y-2">
-                    <div class="w-14 h-14 mx-auto rounded-xl bg-purple-50 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400 flex items-center justify-center">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-violet-600/20 text-violet-400 flex items-center justify-center border border-violet-500/30">
                         <i data-lucide="image-plus" class="w-7 h-7"></i>
                     </div>
-                    <p class="text-sm font-bold text-slate-700 dark:text-slate-200">Drop an image here or click to browse</p>
-                    <p class="text-xs text-slate-400">Supports PNG, JPG, WEBP, GIF, BMP, SVG, ICO</p>
+                    <p class="text-sm font-bold text-white">Drop an image here or click to browse</p>
+                    <p class="text-xs text-slate-400 font-mono">Supports PNG, JPG, WEBP, GIF, BMP, SVG, ICO</p>
                 </div>
             </div>
 
-            <!-- Image Editor Workspace -->
+            <!-- Image Workspace -->
             <div id="imageWorkspace" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <!-- Controls Panel -->
-                <div class="glass-panel p-6 rounded-3xl space-y-6 border border-slate-200 dark:border-slate-800 lg:col-span-1">
-                    <h4 class="font-bold text-base text-slate-900 dark:text-white flex items-center space-x-2">
-                        <i data-lucide="sliders" class="w-4 h-4 text-brand-600"></i>
+                <div class="glass-card p-6 rounded-3xl space-y-5 border border-white/10 lg:col-span-1">
+                    <h4 class="font-bold text-sm text-white flex items-center space-x-2">
+                        <i data-lucide="sliders" class="w-4 h-4 text-violet-400"></i>
                         <span>Conversion Settings</span>
                     </h4>
 
                     <!-- Output Format -->
                     <div class="space-y-1.5">
-                        <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Target Format</label>
-                        <select id="imgTargetFormat" class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-sm font-semibold">
-                            <option value="webp">WEBP (Modern & Lightweight)</option>
-                            <option value="png">PNG (Lossless & Transparent)</option>
-                            <option value="jpeg">JPEG (Universal Photo)</option>
+                        <label class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">Target Format</label>
+                        <select id="imgTargetFormat" class="w-full bg-dark-900 border border-white/15 rounded-xl px-3 py-2 text-xs font-semibold text-white">
+                            <option value="webp">WEBP (Lightweight Modern Web)</option>
+                            <option value="png">PNG (Lossless & Alpha)</option>
+                            <option value="jpeg">JPEG (Standard Photo)</option>
                             <option value="bmp">BMP (Windows Bitmap)</option>
                             <option value="ico">ICO (Windows Icon / Favicon)</option>
                             <option value="svg">SVG (Vector Wrapper)</option>
@@ -339,92 +361,87 @@
                     <!-- Quality Slider -->
                     <div class="space-y-1.5">
                         <div class="flex justify-between text-xs">
-                            <span class="font-bold uppercase tracking-wider text-slate-500">Quality</span>
-                            <span id="imgQualityValue" class="font-bold text-brand-600">92%</span>
+                            <span class="font-mono font-bold uppercase tracking-wider text-slate-400">Quality</span>
+                            <span id="imgQualityValue" class="font-mono font-bold text-cyan-400">92%</span>
                         </div>
-                        <input type="range" id="imgQualityInput" min="5" max="100" value="92" class="w-full accent-brand-600">
+                        <input type="range" id="imgQualityInput" min="5" max="100" value="92" class="w-full accent-cyan-400 cursor-pointer">
                     </div>
 
                     <!-- Resize Controls -->
-                    <div class="space-y-2 pt-2 border-t border-slate-200 dark:border-slate-800">
-                        <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Dimensions (px)</label>
+                    <div class="space-y-2 pt-2 border-t border-white/10">
+                        <label class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">Dimensions (px)</label>
                         <div class="grid grid-cols-2 gap-2">
                             <div>
-                                <span class="text-[10px] text-slate-400">Width</span>
-                                <input type="number" id="imgWidthInput" class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs font-mono" />
+                                <span class="text-[10px] text-slate-400 font-mono">Width</span>
+                                <input type="number" id="imgWidthInput" class="w-full bg-dark-900 border border-white/15 rounded-lg px-2.5 py-1.5 text-xs font-mono text-white" />
                             </div>
                             <div>
-                                <span class="text-[10px] text-slate-400">Height</span>
-                                <input type="number" id="imgHeightInput" class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs font-mono" />
+                                <span class="text-[10px] text-slate-400 font-mono">Height</span>
+                                <input type="number" id="imgHeightInput" class="w-full bg-dark-900 border border-white/15 rounded-lg px-2.5 py-1.5 text-xs font-mono text-white" />
                             </div>
                         </div>
                         <div class="flex items-center space-x-2 pt-1">
-                            <input type="checkbox" id="imgLockAspect" checked class="rounded accent-brand-600" />
-                            <label for="imgLockAspect" class="text-xs text-slate-600 dark:text-slate-400">Lock Aspect Ratio</label>
+                            <input type="checkbox" id="imgLockAspect" checked class="rounded accent-violet-500" />
+                            <label for="imgLockAspect" class="text-xs text-slate-300">Lock Aspect Ratio</label>
                         </div>
                         <div class="flex space-x-1.5 pt-1">
-                            <button type="button" class="img-scale-preset text-[10px] font-semibold px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded hover:bg-brand-50" data-scale="0.25">25%</button>
-                            <button type="button" class="img-scale-preset text-[10px] font-semibold px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded hover:bg-brand-50" data-scale="0.5">50%</button>
-                            <button type="button" class="img-scale-preset text-[10px] font-semibold px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded hover:bg-brand-50" data-scale="0.75">75%</button>
-                            <button type="button" class="img-scale-preset text-[10px] font-semibold px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded hover:bg-brand-50" data-scale="1.0">100%</button>
+                            <button type="button" class="img-scale-preset text-[10px] font-mono font-semibold px-2 py-1 bg-white/5 border border-white/10 rounded hover:bg-white/10" data-scale="0.25">25%</button>
+                            <button type="button" class="img-scale-preset text-[10px] font-mono font-semibold px-2 py-1 bg-white/5 border border-white/10 rounded hover:bg-white/10" data-scale="0.5">50%</button>
+                            <button type="button" class="img-scale-preset text-[10px] font-mono font-semibold px-2 py-1 bg-white/5 border border-white/10 rounded hover:bg-white/10" data-scale="0.75">75%</button>
+                            <button type="button" class="img-scale-preset text-[10px] font-mono font-semibold px-2 py-1 bg-white/5 border border-white/10 rounded hover:bg-white/10" data-scale="1.0">100%</button>
                         </div>
                     </div>
 
                     <!-- Transforms & Filters -->
-                    <div class="space-y-2 pt-2 border-t border-slate-200 dark:border-slate-800">
-                        <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Transforms & Filters</label>
+                    <div class="space-y-2 pt-2 border-t border-white/10">
+                        <label class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">Transforms & Filters</label>
                         <div class="grid grid-cols-2 gap-2 text-xs">
-                            <button id="imgRotateBtn" class="flex items-center justify-center space-x-1 p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700">
+                            <button id="imgRotateBtn" class="flex items-center justify-center space-x-1.5 p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-200">
                                 <i data-lucide="rotate-cw" class="w-3.5 h-3.5"></i>
                                 <span>Rotate 90°</span>
                             </button>
-                            <button id="imgFlipHBtn" class="flex items-center justify-center space-x-1 p-2 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700">
+                            <button id="imgFlipHBtn" class="flex items-center justify-center space-x-1.5 p-2 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-200">
                                 <i data-lucide="flip-horizontal" class="w-3.5 h-3.5"></i>
                                 <span>Flip H</span>
                             </button>
                         </div>
                         <div class="flex items-center space-x-4 pt-1">
-                            <label class="flex items-center space-x-1.5 text-xs text-slate-600 dark:text-slate-400">
-                                <input type="checkbox" id="imgGrayscale" class="rounded accent-brand-600" />
+                            <label class="flex items-center space-x-1.5 text-xs text-slate-300">
+                                <input type="checkbox" id="imgGrayscale" class="rounded accent-violet-500" />
                                 <span>Grayscale</span>
                             </label>
-                            <label class="flex items-center space-x-1.5 text-xs text-slate-600 dark:text-slate-400">
-                                <input type="checkbox" id="imgInvert" class="rounded accent-brand-600" />
+                            <label class="flex items-center space-x-1.5 text-xs text-slate-300">
+                                <input type="checkbox" id="imgInvert" class="rounded accent-violet-500" />
                                 <span>Invert</span>
                             </label>
-                            <label class="flex items-center space-x-1.5 text-xs text-slate-600 dark:text-slate-400">
-                                <input type="checkbox" id="imgSepia" class="rounded accent-brand-600" />
+                            <label class="flex items-center space-x-1.5 text-xs text-slate-300">
+                                <input type="checkbox" id="imgSepia" class="rounded accent-violet-500" />
                                 <span>Sepia</span>
                             </label>
                         </div>
                     </div>
 
-                    <!-- Action Button -->
-                    <button id="imgConvertExecuteBtn" class="w-full py-3 rounded-xl font-bold text-white bg-brand-600 hover:bg-brand-500 shadow-md shadow-brand-500/20 flex items-center justify-center space-x-2 transition">
-                        <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                    <button id="imgConvertExecuteBtn" class="btn-cyber w-full py-3 rounded-xl font-bold text-xs text-white flex items-center justify-center space-x-2 shadow-lg">
+                        <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
                         <span>Apply & Convert</span>
                     </button>
                 </div>
 
                 <!-- Preview Area -->
-                <div class="glass-panel p-6 rounded-3xl space-y-4 border border-slate-200 dark:border-slate-800 lg:col-span-2 flex flex-col">
+                <div class="glass-card p-6 rounded-3xl space-y-4 border border-white/10 lg:col-span-2 flex flex-col">
                     <div class="flex items-center justify-between">
-                        <h4 class="font-bold text-base text-slate-900 dark:text-white">Live Preview & Results</h4>
-                        <div id="imgComparisonBadge" class="text-xs text-slate-500">
-                            <!-- e.g. Original: 1.2MB -> New: 240KB -->
-                        </div>
+                        <h4 class="font-bold text-sm text-white">Live Specimen Preview</h4>
+                        <div id="imgComparisonBadge" class="text-xs font-mono text-cyan-400"></div>
                     </div>
 
-                    <!-- Canvas / Image Display -->
-                    <div class="flex-1 bg-slate-950/5 dark:bg-slate-950/50 rounded-2xl p-4 flex items-center justify-center min-h-[300px] max-h-[460px] overflow-auto border border-slate-200 dark:border-slate-800">
-                        <img id="imgPreviewElement" src="" alt="Preview" class="max-w-full max-h-[420px] object-contain rounded-lg shadow-sm" />
+                    <div class="flex-1 bg-black/40 rounded-2xl p-4 flex items-center justify-center min-h-[300px] max-h-[460px] overflow-auto border border-white/10 shadow-inner">
+                        <img id="imgPreviewElement" src="" alt="Preview" class="max-w-full max-h-[420px] object-contain rounded-lg shadow-lg" />
                     </div>
 
-                    <!-- Download Row -->
                     <div class="flex items-center justify-between pt-2">
                         <span id="imgResolutionInfo" class="text-xs text-slate-400 font-mono">1920 × 1080 px</span>
-                        <a id="imgDownloadBtn" href="#" download="converted-image.png" class="px-5 py-2.5 rounded-xl font-bold text-sm text-white bg-brand-600 hover:bg-brand-500 shadow-md flex items-center space-x-2">
-                            <i data-lucide="download" class="w-4 h-4"></i>
+                        <a id="imgDownloadBtn" href="#" download="converted-image.png" class="btn-cyber px-5 py-2.5 rounded-xl font-bold text-xs text-white flex items-center space-x-2 shadow-lg">
+                            <i data-lucide="download" class="w-3.5 h-3.5"></i>
                             <span>Download Image</span>
                         </a>
                     </div>
@@ -436,21 +453,19 @@
         <section id="tab-docs" class="tab-pane hidden space-y-6">
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                    <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">Documents & Data Converter</h2>
-                    <p class="text-sm text-slate-500 dark:text-slate-400">Convert between JSON, CSV, TSV, XML, YAML, Markdown, and HTML tables</p>
+                    <h2 class="text-2xl font-extrabold text-white">Documents & Data Converter</h2>
+                    <p class="text-xs text-slate-400">Convert between JSON, CSV, TSV, XML, YAML, Markdown, and HTML tables</p>
                 </div>
-                <div class="flex items-center space-x-2">
-                    <button id="docLoadSampleBtn" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300">
-                        Load Example Data
-                    </button>
-                </div>
+                <button id="docLoadSampleBtn" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200">
+                    Load Example Data
+                </button>
             </div>
 
             <!-- Direction & Format Toolbar -->
-            <div class="glass-panel p-4 rounded-2xl flex flex-wrap items-center justify-between gap-4 border border-slate-200 dark:border-slate-800">
+            <div class="glass-card p-4 rounded-2xl flex flex-wrap items-center justify-between gap-4 border border-white/10">
                 <div class="flex items-center space-x-3">
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Convert:</span>
-                    <select id="docSourceFormat" class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs font-semibold">
+                    <span class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">Convert:</span>
+                    <select id="docSourceFormat" class="bg-dark-900 border border-white/15 rounded-lg px-2.5 py-1.5 text-xs font-semibold text-white">
                         <option value="json">JSON</option>
                         <option value="csv">CSV</option>
                         <option value="xml">XML</option>
@@ -458,9 +473,9 @@
                         <option value="markdown">Markdown</option>
                         <option value="html">HTML</option>
                     </select>
-                    <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400"></i>
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">To:</span>
-                    <select id="docTargetFormat" class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg px-2.5 py-1.5 text-xs font-semibold">
+                    <i data-lucide="arrow-right" class="w-4 h-4 text-cyan-400"></i>
+                    <span class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">To:</span>
+                    <select id="docTargetFormat" class="bg-dark-900 border border-white/15 rounded-lg px-2.5 py-1.5 text-xs font-semibold text-white">
                         <option value="csv">CSV</option>
                         <option value="json">JSON</option>
                         <option value="xml">XML</option>
@@ -472,12 +487,12 @@
                 </div>
 
                 <div class="flex items-center space-x-2">
-                    <label class="cursor-pointer px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-50 text-brand-600 dark:bg-brand-950/60 dark:text-brand-400 hover:bg-brand-100 transition flex items-center space-x-1.5">
+                    <label class="cursor-pointer px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-violet-600/20 text-violet-300 border border-violet-500/30 hover:bg-violet-600/30 transition flex items-center space-x-1.5">
                         <i data-lucide="upload" class="w-3.5 h-3.5"></i>
                         <span>Upload File</span>
                         <input type="file" id="docFileInput" class="hidden" accept=".json,.csv,.xml,.yaml,.yml,.txt,.md,.html,.tsv" />
                     </label>
-                    <button id="docExecuteConvertBtn" class="px-4 py-1.5 rounded-lg text-xs font-bold bg-brand-600 hover:bg-brand-500 text-white shadow-md flex items-center space-x-1.5">
+                    <button id="docExecuteConvertBtn" class="btn-cyber px-4 py-1.5 rounded-xl text-xs font-bold text-white flex items-center space-x-1.5 shadow-md">
                         <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
                         <span>Convert Now</span>
                     </button>
@@ -487,39 +502,38 @@
             <!-- Two-Pane Editor -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Source Pane -->
-                <div class="glass-panel p-5 rounded-3xl space-y-3 border border-slate-200 dark:border-slate-800 flex flex-col">
+                <div class="glass-card p-5 rounded-3xl space-y-3 border border-white/10 flex flex-col">
                     <div class="flex items-center justify-between">
-                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center space-x-1">
-                            <i data-lucide="code" class="w-3.5 h-3.5"></i>
+                        <span class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center space-x-1.5">
+                            <i data-lucide="code" class="w-3.5 h-3.5 text-violet-400"></i>
                             <span>Input Source Data</span>
                         </span>
-                        <button id="docClearInputBtn" class="text-[11px] text-slate-400 hover:text-rose-500">Clear</button>
+                        <button id="docClearInputBtn" class="text-[11px] font-mono text-slate-400 hover:text-rose-400">Clear</button>
                     </div>
-                    <textarea id="docInputText" rows="16" class="code-editor flex-1 w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-xs leading-relaxed font-mono focus:ring-2 focus:ring-brand-500 outline-none" placeholder="Paste or type JSON, CSV, XML, Markdown, or YAML here..."></textarea>
+                    <textarea id="docInputText" rows="16" class="code-editor flex-1 w-full bg-dark-950/80 border border-white/10 rounded-2xl p-3 text-xs leading-relaxed font-mono text-slate-200 focus:ring-2 focus:ring-violet-500 outline-none" placeholder="Paste or type JSON, CSV, XML, Markdown, or YAML here..."></textarea>
                 </div>
 
                 <!-- Output Pane -->
-                <div class="glass-panel p-5 rounded-3xl space-y-3 border border-slate-200 dark:border-slate-800 flex flex-col">
+                <div class="glass-card p-5 rounded-3xl space-y-3 border border-white/10 flex flex-col">
                     <div class="flex items-center justify-between">
-                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center space-x-1">
-                            <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-500"></i>
+                        <span class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400 flex items-center space-x-1.5">
+                            <i data-lucide="check-circle" class="w-3.5 h-3.5 text-cyan-400"></i>
                             <span>Converted Result</span>
                         </span>
                         <div class="flex items-center space-x-2">
-                            <button id="docCopyBtn" class="text-[11px] px-2 py-1 bg-slate-100 dark:bg-slate-800 rounded font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-200 flex items-center space-x-1">
+                            <button id="docCopyBtn" class="text-[11px] px-2.5 py-1 bg-white/5 border border-white/10 rounded-lg font-semibold text-slate-200 hover:bg-white/10 flex items-center space-x-1">
                                 <i data-lucide="copy" class="w-3 h-3"></i>
                                 <span>Copy</span>
                             </button>
-                            <a id="docDownloadBtn" download="converted.txt" class="text-[11px] px-2.5 py-1 bg-brand-600 text-white rounded font-bold hover:bg-brand-500 flex items-center space-x-1">
+                            <a id="docDownloadBtn" download="converted.txt" class="btn-cyber text-[11px] px-3 py-1 text-white rounded-lg font-bold flex items-center space-x-1 shadow-sm">
                                 <i data-lucide="download" class="w-3 h-3"></i>
                                 <span>Download</span>
                             </a>
                         </div>
                     </div>
-                    <!-- Output View: Code or Rendered HTML -->
                     <div id="docOutputContainer" class="flex-1 flex flex-col">
-                        <textarea id="docOutputText" readonly rows="16" class="code-editor flex-1 w-full bg-slate-50 dark:bg-slate-900/60 border border-slate-300 dark:border-slate-700 rounded-xl p-3 text-xs leading-relaxed font-mono outline-none" placeholder="Converted data will appear here..."></textarea>
-                        <div id="docRenderedHtml" class="hidden flex-1 overflow-auto bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl p-4 text-sm prose dark:prose-invert max-w-none"></div>
+                        <textarea id="docOutputText" readonly rows="16" class="code-editor flex-1 w-full bg-dark-950/80 border border-white/10 rounded-2xl p-3 text-xs leading-relaxed font-mono text-cyan-300 outline-none" placeholder="Converted data will appear here..."></textarea>
+                        <div id="docRenderedHtml" class="hidden flex-1 overflow-auto bg-dark-950/80 border border-white/10 rounded-2xl p-4 text-sm prose prose-invert max-w-none"></div>
                     </div>
                 </div>
             </div>
@@ -528,18 +542,18 @@
         <!-- TAB 4: PDF Studio -->
         <section id="tab-pdf" class="tab-pane hidden space-y-6">
             <div class="max-w-2xl">
-                <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">PDF Studio</h2>
-                <p class="text-sm text-slate-500 dark:text-slate-400">Combine images into a multi-page PDF document, or format text & markdown directly into printable PDFs.</p>
+                <h2 class="text-2xl font-extrabold text-white">PDF Studio</h2>
+                <p class="text-xs text-slate-400">Assemble multi-page PDF documents from images or compile markdown notes</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <!-- PDF Settings Panel -->
-                <div class="glass-panel p-6 rounded-3xl space-y-5 border border-slate-200 dark:border-slate-800">
-                    <h4 class="font-bold text-base text-slate-900 dark:text-white">PDF Configuration</h4>
+                <div class="glass-card p-6 rounded-3xl space-y-5 border border-white/10">
+                    <h4 class="font-bold text-sm text-white">PDF Configuration</h4>
                     
                     <div class="space-y-1.5">
-                        <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Page Format</label>
-                        <select id="pdfPageSize" class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-sm font-semibold">
+                        <label class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">Page Format</label>
+                        <select id="pdfPageSize" class="w-full bg-dark-900 border border-white/15 rounded-xl px-3 py-2 text-xs font-semibold text-white">
                             <option value="a4">A4 (Standard 210 × 297 mm)</option>
                             <option value="letter">US Letter (8.5 × 11 in)</option>
                             <option value="fit">Fit to Image Size</option>
@@ -547,8 +561,8 @@
                     </div>
 
                     <div class="space-y-1.5">
-                        <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Page Orientation</label>
-                        <select id="pdfOrientation" class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-sm font-semibold">
+                        <label class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">Page Orientation</label>
+                        <select id="pdfOrientation" class="w-full bg-dark-900 border border-white/15 rounded-xl px-3 py-2 text-xs font-semibold text-white">
                             <option value="auto">Auto (Match Image)</option>
                             <option value="portrait">Portrait</option>
                             <option value="landscape">Landscape</option>
@@ -556,8 +570,8 @@
                     </div>
 
                     <div class="space-y-1.5">
-                        <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Margin</label>
-                        <select id="pdfMargin" class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-sm font-semibold">
+                        <label class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">Margin</label>
+                        <select id="pdfMargin" class="w-full bg-dark-900 border border-white/15 rounded-xl px-3 py-2 text-xs font-semibold text-white">
                             <option value="0">None (Full Bleed - 0mm)</option>
                             <option value="5">Compact (5mm)</option>
                             <option value="10" selected>Normal (10mm)</option>
@@ -565,25 +579,25 @@
                         </select>
                     </div>
 
-                    <button id="pdfGenerateBtn" class="w-full py-3 rounded-xl font-bold text-white bg-brand-600 hover:bg-brand-500 shadow-md shadow-brand-500/20 flex items-center justify-center space-x-2 transition">
+                    <button id="pdfGenerateBtn" class="btn-cyber w-full py-3 rounded-xl font-bold text-xs text-white flex items-center justify-center space-x-2 shadow-lg">
                         <i data-lucide="file-check" class="w-4 h-4"></i>
                         <span>Generate PDF</span>
                     </button>
                 </div>
 
                 <!-- PDF Images Drop & Reorder Area -->
-                <div class="glass-panel p-6 rounded-3xl space-y-4 border border-slate-200 dark:border-slate-800 lg:col-span-2">
+                <div class="glass-card p-6 rounded-3xl space-y-4 border border-white/10 lg:col-span-2">
                     <div class="flex items-center justify-between">
-                        <h4 class="font-bold text-base text-slate-900 dark:text-white">PDF Pages (<span id="pdfPageCount">0</span>)</h4>
-                        <button id="pdfClearPagesBtn" class="text-xs text-rose-500 hover:underline">Clear All</button>
+                        <h4 class="font-bold text-sm text-white">PDF Pages (<span id="pdfPageCount" class="text-cyan-400 font-mono">0</span>)</h4>
+                        <button id="pdfClearPagesBtn" class="text-xs text-rose-400 hover:underline">Clear All</button>
                     </div>
 
-                    <div id="pdfDropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-brand-500 rounded-2xl p-6 text-center cursor-pointer transition">
+                    <div id="pdfDropzone" class="dropzone-cyber rounded-2xl p-6 text-center cursor-pointer">
                         <input type="file" id="pdfFileInput" multiple accept="image/*" class="hidden" />
                         <div class="space-y-2">
-                            <i data-lucide="image-plus" class="w-8 h-8 mx-auto text-brand-500"></i>
-                            <p class="text-sm font-bold text-slate-700 dark:text-slate-300">Drop images here to add pages</p>
-                            <p class="text-xs text-slate-400">Add as many images as you like to compile a PDF</p>
+                            <i data-lucide="image-plus" class="w-8 h-8 mx-auto text-violet-400"></i>
+                            <p class="text-xs font-bold text-white">Drop images here to add pages</p>
+                            <p class="text-[11px] text-slate-400 font-mono">Add as many images as you like to compile a PDF</p>
                         </div>
                     </div>
 
@@ -593,13 +607,13 @@
                     </div>
 
                     <!-- PDF Result Banner -->
-                    <div id="pdfResultBanner" class="hidden pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                        <div class="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400 text-sm font-bold">
-                            <i data-lucide="check-circle" class="w-5 h-5"></i>
+                    <div id="pdfResultBanner" class="hidden pt-4 border-t border-white/10 flex items-center justify-between">
+                        <div class="flex items-center space-x-2 text-emerald-400 text-xs font-bold">
+                            <i data-lucide="check-circle" class="w-4 h-4"></i>
                             <span>PDF Ready for Download</span>
                         </div>
-                        <a id="pdfDownloadLink" download="document.pdf" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-brand-600 hover:bg-brand-500 shadow-md flex items-center space-x-2">
-                            <i data-lucide="download" class="w-4 h-4"></i>
+                        <a id="pdfDownloadLink" download="document.pdf" class="btn-cyber px-5 py-2 rounded-xl text-xs font-bold text-white flex items-center space-x-2 shadow-lg">
+                            <i data-lucide="download" class="w-3.5 h-3.5"></i>
                             <span>Download PDF</span>
                         </a>
                     </div>
@@ -610,47 +624,47 @@
         <!-- TAB 5: Audio & Video Extractor -->
         <section id="tab-audio" class="tab-pane hidden space-y-6">
             <div>
-                <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">Audio & Video Extractor</h2>
-                <p class="text-sm text-slate-500 dark:text-slate-400">Extract audio tracks from video files (MP4, WebM, MOV) or convert audio (MP3, WAV, OGG) with volume amplification and trimming.</p>
+                <h2 class="text-2xl font-extrabold text-white">Audio & Video Extractor</h2>
+                <p class="text-xs text-slate-400">Extract soundtracks from videos or convert audio formats client-side</p>
             </div>
 
             <!-- Audio Dropzone -->
-            <div id="audioDropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-brand-500 bg-white/70 dark:bg-slate-900/70 rounded-3xl p-8 text-center cursor-pointer transition">
+            <div id="audioDropzone" class="dropzone-cyber rounded-3xl p-8 text-center cursor-pointer">
                 <input type="file" id="audioFileInput" accept="audio/*,video/*" class="hidden" />
                 <div class="max-w-sm mx-auto space-y-2">
-                    <div class="w-14 h-14 mx-auto rounded-xl bg-amber-50 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                    <div class="w-14 h-14 mx-auto rounded-2xl bg-cyan-600/20 text-cyan-400 flex items-center justify-center border border-cyan-500/30">
                         <i data-lucide="disc" class="w-7 h-7"></i>
                     </div>
-                    <p class="text-sm font-bold text-slate-700 dark:text-slate-200">Drop an Audio or Video file here</p>
-                    <p class="text-xs text-slate-400">MP4, WebM, MOV, MKV, MP3, WAV, OGG, AAC</p>
+                    <p class="text-sm font-bold text-white">Drop an Audio or Video file here</p>
+                    <p class="text-xs text-slate-400 font-mono">MP4, WebM, MOV, MKV, MP3, WAV, OGG, AAC</p>
                 </div>
             </div>
 
-            <!-- Audio Processing Workspace -->
-            <div id="audioWorkspace" class="hidden glass-panel p-6 sm:p-8 rounded-3xl space-y-6 border border-slate-200 dark:border-slate-800">
-                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-4">
+            <!-- Audio Workspace -->
+            <div id="audioWorkspace" class="hidden glass-card p-6 sm:p-8 rounded-3xl space-y-6 border border-white/10">
+                <div class="flex items-center justify-between border-b border-white/10 pb-4">
                     <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950 text-amber-600 flex items-center justify-center">
-                            <i data-lucide="music" class="w-5 h-5"></i>
+                        <div class="w-10 h-10 rounded-xl bg-cyan-600/20 text-cyan-400 flex items-center justify-center border border-cyan-500/30">
+                            <i data-lucide="music-2" class="w-5 h-5"></i>
                         </div>
                         <div>
-                            <h4 id="audioFileName" class="text-base font-bold text-slate-900 dark:text-white">audio.mp4</h4>
-                            <p id="audioFileMeta" class="text-xs text-slate-500">Duration: --:-- • Channels: Stereo</p>
+                            <h4 id="audioFileName" class="text-sm font-bold text-white">audio.mp4</h4>
+                            <p id="audioFileMeta" class="text-xs text-slate-400 font-mono">Duration: --:-- • Channels: Stereo</p>
                         </div>
                     </div>
-                    <button id="audioClearBtn" class="text-xs text-rose-500 font-semibold hover:underline">Change File</button>
+                    <button id="audioClearBtn" class="text-xs text-rose-400 font-semibold hover:underline">Change File</button>
                 </div>
 
                 <!-- Waveform / Audio Player Preview -->
-                <div class="space-y-2">
+                <div class="space-y-2 bg-black/40 p-3 rounded-2xl border border-white/10">
                     <audio id="audioNativePlayer" controls class="w-full"></audio>
                 </div>
 
                 <!-- Audio Settings -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div class="space-y-1.5">
-                        <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Target Output</label>
-                        <select id="audioTargetFormat" class="w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-sm font-semibold">
+                        <label class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">Target Output</label>
+                        <select id="audioTargetFormat" class="w-full bg-dark-900 border border-white/15 rounded-xl px-3 py-2 text-xs font-semibold text-white">
                             <option value="wav">WAV (Lossless 16-bit PCM)</option>
                             <option value="mp3">MP3 (Universal Compressed)</option>
                         </select>
@@ -658,29 +672,29 @@
 
                     <div class="space-y-1.5">
                         <div class="flex justify-between text-xs">
-                            <span class="font-bold uppercase tracking-wider text-slate-500">Volume Gain</span>
-                            <span id="audioGainLabel" class="font-bold text-brand-600">100%</span>
+                            <span class="font-mono font-bold uppercase tracking-wider text-slate-400">Volume Gain</span>
+                            <span id="audioGainLabel" class="font-mono font-bold text-cyan-400">100%</span>
                         </div>
-                        <input type="range" id="audioGainInput" min="20" max="250" value="100" class="w-full accent-brand-600" />
+                        <input type="range" id="audioGainInput" min="20" max="250" value="100" class="w-full accent-cyan-400 cursor-pointer" />
                     </div>
 
                     <div class="flex items-end">
-                        <button id="audioConvertExecuteBtn" class="w-full py-2.5 rounded-xl font-bold text-white bg-brand-600 hover:bg-brand-500 shadow-md flex items-center justify-center space-x-2">
-                            <i data-lucide="sparkles" class="w-4 h-4"></i>
+                        <button id="audioConvertExecuteBtn" class="btn-cyber w-full py-2.5 rounded-xl font-bold text-xs text-white flex items-center justify-center space-x-2 shadow-lg">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
                             <span>Process & Convert</span>
                         </button>
                     </div>
                 </div>
 
                 <!-- Audio Output Result -->
-                <div id="audioOutputCard" class="hidden pt-4 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-                    <div class="flex items-center space-x-2 text-emerald-600 dark:text-emerald-400 font-bold text-sm">
-                        <i data-lucide="check-circle" class="w-5 h-5"></i>
+                <div id="audioOutputCard" class="hidden pt-4 border-t border-white/10 flex items-center justify-between">
+                    <div class="flex items-center space-x-2 text-emerald-400 font-bold text-xs">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i>
                         <span>Audio Ready!</span>
-                        <span id="audioOutputSize" class="text-xs text-slate-400 font-normal"></span>
+                        <span id="audioOutputSize" class="text-xs text-slate-400 font-mono"></span>
                     </div>
-                    <a id="audioDownloadBtn" download="extracted-audio.wav" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-brand-600 hover:bg-brand-500 shadow-md flex items-center space-x-1.5">
-                        <i data-lucide="download" class="w-4 h-4"></i>
+                    <a id="audioDownloadBtn" download="extracted-audio.wav" class="btn-cyber px-5 py-2 rounded-xl text-xs font-bold text-white flex items-center space-x-1.5 shadow-lg">
+                        <i data-lucide="download" class="w-3.5 h-3.5"></i>
                         <span>Download Audio</span>
                     </a>
                 </div>
@@ -690,81 +704,81 @@
         <!-- TAB 6: Developer Tools (Base64 & Hash) -->
         <section id="tab-tools" class="tab-pane hidden space-y-6">
             <div>
-                <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">Developer Encodings & Checksums</h2>
-                <p class="text-sm text-slate-500 dark:text-slate-400">File to Base64 data URIs, Base64 to file decoder, cryptographic SHA-256/512 hashes, and text casing.</p>
+                <h2 class="text-2xl font-extrabold text-white">Developer Encodings & Checksums</h2>
+                <p class="text-xs text-slate-400">Convert files to Base64 URIs, decode strings back to files, and compute cryptographic hashes</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <!-- Base64 File Tool -->
-                <div class="glass-panel p-6 rounded-3xl space-y-4 border border-slate-200 dark:border-slate-800">
-                    <h4 class="font-bold text-base text-slate-900 dark:text-white flex items-center space-x-2">
-                        <i data-lucide="binary" class="w-4 h-4 text-brand-600"></i>
+                <div class="glass-card p-6 rounded-3xl space-y-4 border border-white/10">
+                    <h4 class="font-bold text-sm text-white flex items-center space-x-2">
+                        <i data-lucide="binary" class="w-4 h-4 text-cyan-400"></i>
                         <span>File to Base64 Encoder</span>
                     </h4>
 
-                    <div id="toolDropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-brand-500 rounded-2xl p-6 text-center cursor-pointer transition">
+                    <div id="toolDropzone" class="dropzone-cyber rounded-2xl p-6 text-center cursor-pointer">
                         <input type="file" id="toolFileInput" class="hidden" />
-                        <p class="text-xs font-bold text-slate-600 dark:text-slate-300">Drop any file to get Base64 & hashes</p>
+                        <p class="text-xs font-bold text-white">Drop any file to get Base64 & hashes</p>
                     </div>
 
                     <div class="space-y-3 pt-2">
                         <div>
                             <div class="flex items-center justify-between text-xs mb-1">
-                                <span class="font-bold text-slate-500">Data URI (for HTML/CSS):</span>
-                                <button id="toolCopyDataUri" class="text-brand-600 hover:underline">Copy</button>
+                                <span class="font-mono font-bold text-slate-400">Data URI:</span>
+                                <button id="toolCopyDataUri" class="text-cyan-400 hover:underline text-[11px] font-mono">Copy</button>
                             </div>
-                            <textarea id="toolDataUriOutput" readonly rows="3" class="w-full bg-slate-50 dark:bg-slate-900/60 border border-slate-300 dark:border-slate-700 rounded-xl p-2.5 text-[11px] font-mono"></textarea>
+                            <textarea id="toolDataUriOutput" readonly rows="3" class="w-full bg-dark-950/80 border border-white/10 rounded-xl p-2.5 text-[11px] font-mono text-slate-300"></textarea>
                         </div>
 
                         <div>
                             <div class="flex items-center justify-between text-xs mb-1">
-                                <span class="font-bold text-slate-500">Raw Base64:</span>
-                                <button id="toolCopyRawBase64" class="text-brand-600 hover:underline">Copy</button>
+                                <span class="font-mono font-bold text-slate-400">Raw Base64:</span>
+                                <button id="toolCopyRawBase64" class="text-cyan-400 hover:underline text-[11px] font-mono">Copy</button>
                             </div>
-                            <textarea id="toolRawBase64Output" readonly rows="3" class="w-full bg-slate-50 dark:bg-slate-900/60 border border-slate-300 dark:border-slate-700 rounded-xl p-2.5 text-[11px] font-mono"></textarea>
+                            <textarea id="toolRawBase64Output" readonly rows="3" class="w-full bg-dark-950/80 border border-white/10 rounded-xl p-2.5 text-[11px] font-mono text-slate-300"></textarea>
                         </div>
                     </div>
                 </div>
 
                 <!-- Hashes & Text Transforms -->
-                <div class="glass-panel p-6 rounded-3xl space-y-4 border border-slate-200 dark:border-slate-800">
-                    <h4 class="font-bold text-base text-slate-900 dark:text-white flex items-center space-x-2">
-                        <i data-lucide="hash" class="w-4 h-4 text-brand-600"></i>
+                <div class="glass-card p-6 rounded-3xl space-y-4 border border-white/10">
+                    <h4 class="font-bold text-sm text-white flex items-center space-x-2">
+                        <i data-lucide="hash" class="w-4 h-4 text-violet-400"></i>
                         <span>Cryptographic Checksums (Web Crypto)</span>
                     </h4>
 
                     <div class="space-y-3">
                         <div>
                             <div class="flex items-center justify-between text-xs mb-1">
-                                <span class="font-bold text-slate-500">SHA-256 Hash:</span>
-                                <button id="toolCopySha256" class="text-brand-600 hover:underline">Copy</button>
+                                <span class="font-mono font-bold text-slate-400">SHA-256 Hash:</span>
+                                <button id="toolCopySha256" class="text-cyan-400 hover:underline text-[11px] font-mono">Copy</button>
                             </div>
-                            <input type="text" id="toolSha256Output" readonly class="w-full bg-slate-50 dark:bg-slate-900/60 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-mono" placeholder="Drop a file above..." />
+                            <input type="text" id="toolSha256Output" readonly class="w-full bg-dark-950/80 border border-white/10 rounded-xl px-3 py-2 text-xs font-mono text-cyan-300" placeholder="Drop a file above..." />
                         </div>
 
                         <div>
                             <div class="flex items-center justify-between text-xs mb-1">
-                                <span class="font-bold text-slate-500">SHA-512 Hash:</span>
-                                <button id="toolCopySha512" class="text-brand-600 hover:underline">Copy</button>
+                                <span class="font-mono font-bold text-slate-400">SHA-512 Hash:</span>
+                                <button id="toolCopySha512" class="text-cyan-400 hover:underline text-[11px] font-mono">Copy</button>
                             </div>
-                            <input type="text" id="toolSha512Output" readonly class="w-full bg-slate-50 dark:bg-slate-900/60 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-mono" placeholder="Drop a file above..." />
+                            <input type="text" id="toolSha512Output" readonly class="w-full bg-dark-950/80 border border-white/10 rounded-xl px-3 py-2 text-xs font-mono text-cyan-300" placeholder="Drop a file above..." />
                         </div>
 
                         <div>
                             <div class="flex items-center justify-between text-xs mb-1">
-                                <span class="font-bold text-slate-500">SHA-1 Hash:</span>
-                                <button id="toolCopySha1" class="text-brand-600 hover:underline">Copy</button>
+                                <span class="font-mono font-bold text-slate-400">SHA-1 Hash:</span>
+                                <button id="toolCopySha1" class="text-cyan-400 hover:underline text-[11px] font-mono">Copy</button>
                             </div>
-                            <input type="text" id="toolSha1Output" readonly class="w-full bg-slate-50 dark:bg-slate-900/60 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-2 text-xs font-mono" placeholder="Drop a file above..." />
+                            <input type="text" id="toolSha1Output" readonly class="w-full bg-dark-950/80 border border-white/10 rounded-xl px-3 py-2 text-xs font-mono text-cyan-300" placeholder="Drop a file above..." />
                         </div>
                     </div>
 
                     <!-- Base64 to File Decoder -->
-                    <div class="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
-                        <h5 class="text-xs font-bold uppercase tracking-wider text-slate-500">Base64 to File Decoder</h5>
+                    <div class="pt-4 border-t border-white/10 space-y-2">
+                        <h5 class="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">Base64 to File Decoder</h5>
                         <div class="flex space-x-2">
-                            <input type="text" id="toolBase64Input" placeholder="Paste Base64 or Data URI string..." class="flex-1 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-1.5 text-xs font-mono" />
-                            <button id="toolBase64DecodeBtn" class="px-3 py-1.5 rounded-xl bg-brand-600 text-white font-bold text-xs hover:bg-brand-500">
+                            <input type="text" id="toolBase64Input" placeholder="Paste Base64 or Data URI string..." class="flex-1 bg-dark-950/80 border border-white/10 rounded-xl px-3 py-1.5 text-xs font-mono text-white" />
+                            <button id="toolBase64DecodeBtn" class="btn-cyber px-3.5 py-1.5 rounded-xl font-bold text-xs text-white">
                                 Download File
                             </button>
                         </div>
@@ -776,39 +790,39 @@
         <!-- TAB 7: Batch Converter & ZIP -->
         <section id="tab-batch" class="tab-pane hidden space-y-6">
             <div>
-                <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white">Batch Converter & ZIP Packager</h2>
-                <p class="text-sm text-slate-500 dark:text-slate-400">Convert dozens of images at once and download everything neatly packaged in a single ZIP file.</p>
+                <h2 class="text-2xl font-extrabold text-white">Batch Converter & ZIP Packager</h2>
+                <p class="text-xs text-slate-400">Batch transcode dozens of images in parallel and download a packaged ZIP archive</p>
             </div>
 
             <!-- Batch Dropzone -->
-            <div id="batchDropzone" class="border-2 border-dashed border-slate-300 dark:border-slate-700 hover:border-brand-500 bg-white/70 dark:bg-slate-900/70 rounded-3xl p-10 text-center cursor-pointer transition">
+            <div id="batchDropzone" class="dropzone-cyber rounded-3xl p-10 text-center cursor-pointer">
                 <input type="file" id="batchFileInput" multiple accept="image/*" class="hidden" />
                 <div class="max-w-md mx-auto space-y-2">
-                    <div class="w-16 h-16 mx-auto rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-brand-600 flex items-center justify-center">
+                    <div class="w-16 h-16 mx-auto rounded-2xl bg-violet-600/20 text-cyan-400 flex items-center justify-center border border-white/10">
                         <i data-lucide="layers" class="w-8 h-8"></i>
                     </div>
-                    <p class="text-base font-bold text-slate-800 dark:text-slate-200">Drop multiple images here</p>
-                    <p class="text-xs text-slate-400">Select 5, 20, or 100 images to convert in parallel</p>
+                    <p class="text-sm font-bold text-white">Drop multiple images here</p>
+                    <p class="text-xs text-slate-400 font-mono">Select 5, 20, or 100 images to convert simultaneously</p>
                 </div>
             </div>
 
             <!-- Batch Workspace -->
-            <div id="batchWorkspace" class="hidden glass-panel p-6 sm:p-8 rounded-3xl space-y-6 border border-slate-200 dark:border-slate-800">
-                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-200 dark:border-slate-800">
+            <div id="batchWorkspace" class="hidden glass-card p-6 sm:p-8 rounded-3xl space-y-6 border border-white/10">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
                     <div>
-                        <h4 class="font-bold text-base text-slate-900 dark:text-white">Batch Queue (<span id="batchCount">0</span> files)</h4>
-                        <p class="text-xs text-slate-400">Select target format and convert all</p>
+                        <h4 class="font-bold text-sm text-white">Batch Queue (<span id="batchCount" class="text-cyan-400 font-mono">0</span> files)</h4>
+                        <p class="text-xs text-slate-400">Select target format and batch process all</p>
                     </div>
 
                     <div class="flex items-center space-x-3">
-                        <select id="batchTargetFormat" class="bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-xl px-3 py-1.5 text-xs font-semibold">
+                        <select id="batchTargetFormat" class="bg-dark-900 border border-white/15 rounded-xl px-3 py-1.5 text-xs font-semibold text-white">
                             <option value="webp">Convert All to WEBP</option>
                             <option value="png">Convert All to PNG</option>
                             <option value="jpeg">Convert All to JPEG</option>
                             <option value="bmp">Convert All to BMP</option>
                             <option value="ico">Convert All to ICO</option>
                         </select>
-                        <button id="batchStartBtn" class="px-5 py-2 rounded-xl text-xs font-bold text-white bg-brand-600 hover:bg-brand-500 shadow-md flex items-center space-x-1.5">
+                        <button id="batchStartBtn" class="btn-cyber px-5 py-2 rounded-xl text-xs font-bold text-white flex items-center space-x-1.5 shadow-lg">
                             <i data-lucide="play" class="w-3.5 h-3.5"></i>
                             <span>Start Conversion</span>
                         </button>
@@ -817,19 +831,19 @@
 
                 <!-- Progress Bar -->
                 <div id="batchProgressWrapper" class="hidden space-y-2">
-                    <div class="flex justify-between text-xs">
-                        <span id="batchProgressText" class="font-semibold text-slate-600 dark:text-slate-300">Processing...</span>
-                        <span id="batchProgressPercent" class="font-bold text-brand-600">0%</span>
+                    <div class="flex justify-between text-xs font-mono">
+                        <span id="batchProgressText" class="font-semibold text-slate-300">Processing...</span>
+                        <span id="batchProgressPercent" class="font-bold text-cyan-400">0%</span>
                     </div>
-                    <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-800 rounded-full overflow-hidden">
-                        <div id="batchProgressBar" class="h-full bg-brand-600 transition-all duration-150" style="width: 0%"></div>
+                    <div class="w-full h-2.5 bg-dark-950 rounded-full overflow-hidden border border-white/10">
+                        <div id="batchProgressBar" class="h-full bg-gradient-to-r from-violet-600 to-cyan-400 transition-all duration-150" style="width: 0%"></div>
                     </div>
                 </div>
 
                 <!-- Batch Items Table -->
-                <div class="max-h-[300px] overflow-auto border border-slate-200 dark:border-slate-800 rounded-2xl">
+                <div class="max-h-[300px] overflow-auto border border-white/10 rounded-2xl bg-black/30">
                     <table class="w-full text-left text-xs">
-                        <thead class="bg-slate-100 dark:bg-slate-900 text-slate-500 font-bold uppercase tracking-wider sticky top-0">
+                        <thead class="bg-white/5 text-slate-400 font-mono font-bold uppercase tracking-wider sticky top-0">
                             <tr>
                                 <th class="px-4 py-3">File Name</th>
                                 <th class="px-4 py-3">Original Size</th>
@@ -838,16 +852,16 @@
                                 <th class="px-4 py-3">Status</th>
                             </tr>
                         </thead>
-                        <tbody id="batchTableBody" class="divide-y divide-slate-200 dark:divide-slate-800">
+                        <tbody id="batchTableBody" class="divide-y divide-white/5 font-mono">
                             <!-- Populated dynamically -->
                         </tbody>
                     </table>
                 </div>
 
                 <!-- Batch Actions (Download All as ZIP) -->
-                <div id="batchZipRow" class="hidden flex items-center justify-between pt-4 border-t border-slate-200 dark:border-slate-800">
-                    <span class="text-xs text-slate-500 font-medium">All files converted successfully!</span>
-                    <button id="batchDownloadZipBtn" class="px-6 py-2.5 rounded-xl font-bold text-sm text-white bg-emerald-600 hover:bg-emerald-500 shadow-lg shadow-emerald-600/20 flex items-center space-x-2 transition">
+                <div id="batchZipRow" class="hidden flex items-center justify-between pt-4 border-t border-white/10">
+                    <span class="text-xs text-slate-400 font-medium">All files converted successfully!</span>
+                    <button id="batchDownloadZipBtn" class="px-6 py-2.5 rounded-xl font-bold text-xs text-white bg-gradient-to-r from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 shadow-[0_0_20px_rgba(16,185,129,0.3)] flex items-center space-x-2 transition">
                         <i data-lucide="archive" class="w-4 h-4"></i>
                         <span>Download All as ZIP</span>
                     </button>
@@ -857,22 +871,24 @@
     </main>
 
     <!-- History Drawer / Modal -->
-    <div id="historyModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-2xl w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-800 space-y-4 max-h-[85vh] flex flex-col">
-            <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-800">
-                <div class="flex items-center space-x-2">
-                    <i data-lucide="clock" class="w-5 h-5 text-brand-600"></i>
-                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">Recent Conversions</h3>
+    <div id="historyModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-3xl max-w-2xl w-full p-6 shadow-2xl border border-white/15 space-y-4 max-h-[85vh] flex flex-col">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10">
+                <div class="flex items-center space-x-2.5">
+                    <div class="p-2 rounded-xl bg-violet-600/20 text-violet-400 border border-violet-500/30">
+                        <i data-lucide="history" class="w-4 h-4"></i>
+                    </div>
+                    <h3 class="text-base font-bold text-white">Recent Conversions</h3>
                 </div>
                 <div class="flex items-center space-x-3">
-                    <button id="clearHistoryBtn" class="text-xs text-rose-500 hover:underline">Clear History</button>
-                    <button id="closeHistoryBtn" class="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-400">
+                    <button id="clearHistoryBtn" class="text-xs font-mono text-rose-400 hover:underline">Clear History</button>
+                    <button id="closeHistoryBtn" class="p-1.5 rounded-lg hover:bg-white/10 text-slate-400 hover:text-white">
                         <i data-lucide="x" class="w-5 h-5"></i>
                     </button>
                 </div>
             </div>
 
-            <div id="historyListContainer" class="flex-1 overflow-auto divide-y divide-slate-100 dark:divide-slate-800 text-xs">
+            <div id="historyListContainer" class="flex-1 overflow-auto divide-y divide-white/5 text-xs font-mono">
                 <!-- Populated dynamically -->
             </div>
         </div>
@@ -882,13 +898,13 @@
     <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col space-y-2 pointer-events-none"></div>
 
     <!-- Footer -->
-    <footer class="border-t border-slate-200 dark:border-slate-800 py-6 mt-12 text-center text-xs text-slate-500 dark:text-slate-400">
+    <footer class="border-t border-white/10 py-6 mt-12 text-center text-xs text-slate-500 font-mono">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
             <div>
-                <span class="font-bold text-slate-700 dark:text-slate-300">OmniConvert Studio</span> • 100% Private Client-Side Conversion Engine
+                <span class="font-bold text-slate-300">OmniConvert Studio</span> • 100% Private Client-Side Conversion Engine
             </div>
-            <div>
-                Supports Images, Documents, PDFs, Audio, Video Extraction & Hashes
+            <div class="text-slate-400">
+                Ultra-Fast Wasm & Canvas Pipeline
             </div>
         </div>
     </footer>
